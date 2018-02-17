@@ -1,1 +1,2 @@
-export class CloudWatchLogs {}
+export * from './base'
+export * from './lambda'
