@@ -10,10 +10,10 @@ export type filterReturn = Request<filterResponse, AWSError>
 /**
  * Mock cloudwatch's "filterLogEvents"
  */
-export default () => {
+export default (resp?: filterResponse) => {
   const cb = (params: filterParams, callback: filterCallback): void => {
     const error: AWSError = null
-    const data: filterResponse = { events: [] }
+    const data: filterResponse = resp || { events: [{ message: 'mocked' }] }
     callback(error, data)
   }
   AWS.mock('CloudWatchLogs', 'filterLogEvents', cb)
