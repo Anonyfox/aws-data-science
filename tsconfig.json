@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "paths": {
+      "@lib": ["./lib"]
+    },
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["esnext"]
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "types": ["node"],
+  "typeRoots": ["node_modules/@types"]
+}
