@@ -37,8 +37,6 @@ function bufferToLog(buffer: CWLEvent[]): IEvent {
   const startEvent = buffer.shift()
   const reportEvent = buffer.pop()
   const endEvent = buffer.pop()
-  // tslint:disable-next-line:no-console
-  console.log('BAM')
   return {
     endTime: endEvent.timestamp,
     messages: buffer.map(e => e.message),
@@ -50,8 +48,6 @@ export class ParseLambdaLog extends TransformObjectData<CWLEvent, IEvent> {
   constructor() {
     super()
     this.handler = (data: CWLEvent) => {
-      // tslint:disable-next-line:no-console
-      console.log('DATA: ', data)
       if (!this.buffer.length && !data.message.startsWith('START')) {
         return null
       } else if (!data.message.startsWith('REPORT')) {

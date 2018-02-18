@@ -1,6 +1,6 @@
-import AWS = require('aws-sdk')
+// import AWS = require('aws-sdk')
 import { Readable } from 'stream'
-// import AWS from '../../aws'
+import AWS from '../../aws'
 
 export type CWLEvent = AWS.CloudWatchLogs.FilteredLogEvent
 export type CWLResp = AWS.CloudWatchLogs.Types.FilterLogEventsResponse

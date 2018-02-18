@@ -2,9 +2,18 @@ import { Collect, Origin, Transform } from '@lib'
 import 'chai/register-should'
 import { skip, slow, suite, test, timeout } from 'mocha-typescript'
 import { Readable } from 'stream'
+import UnitTest from '../unit_test'
 
-@suite.skip('Transform::LambdaLog')
-class UnitTestParseLambdaLog {
+@suite('Transform::LambdaLog')
+class UnitTestParseLambdaLog extends UnitTest {
+  before() {
+    this.mockAwsCloudWatchLogs('lambda')
+  }
+
+  after() {
+    this.restoreAwsCloudWatchLogs()
+  }
+
   @test
   async 'can aggregate lambda events from cloudwatch log streams'() {
     const name = '/aws/lambda/whatever'
@@ -16,8 +25,8 @@ class UnitTestParseLambdaLog {
       .promise()
     data.should.be.an('array')
     data.should.have.length(3)
-    // tslint:disable-next-line:no-console
-    console.log(data)
-    data[0].should.be.deep.equal({ b: 2 })
+    data[0].should.have.keys('endTime', 'messages', 'startTime')
+    data[0].messages.should.be.an('array')
+    data[0].messages.should.have.length(1)
   }
 }
