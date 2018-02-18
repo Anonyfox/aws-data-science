@@ -67,10 +67,10 @@ export class ParseLambdaLog extends TransformObjectData<CWLEvent, IEvent> {
     super()
     this.handler = (data: CWLEvent) => {
       if (!this.buffer.length && !data.message.startsWith('START')) {
-        return null
+        return
       } else if (!data.message.startsWith('REPORT')) {
         this.buffer.push(data)
-        return null
+        return
       } else {
         this.buffer.push(data)
         const result = bufferToLog(this.buffer)
