@@ -1,17 +1,18 @@
+import AWS = require('aws-sdk')
 import { Readable } from 'stream'
-import AWS from '../../../aws'
-import CloudWatchLogEvent from './event'
+// import AWS from '../../aws'
 
+export type CWLEvent = AWS.CloudWatchLogs.FilteredLogEvent
 export type CWLResp = AWS.CloudWatchLogs.Types.FilterLogEventsResponse
 export type CWLParams = AWS.CloudWatchLogs.Types.FilterLogEventsRequest
 
-export class CloudWatchLogs extends Readable {
+export class CloudWatchLog extends Readable {
   logGroupName: string
   startTime: number
   endTime: number
-  private client: AWS.CloudWatchLogs = new AWS.CloudWatchLogs()
+  private client: AWS.CloudWatchLogs
   private nextToken: string = undefined
-  private buffer: any[] = []
+  private buffer: CWLEvent[] = []
   private hasStarted = false
 
   constructor(logGroupName: string, startTime?: number, endTime?: number) {
@@ -19,6 +20,7 @@ export class CloudWatchLogs extends Readable {
     this.logGroupName = logGroupName
     this.startTime = startTime || undefined
     this.endTime = endTime || undefined
+    this.client = new AWS.CloudWatchLogs()
   }
 
   async _read(): Promise<void> {
@@ -37,20 +39,6 @@ export class CloudWatchLogs extends Readable {
       this.push(null)
     }
   }
-
-  // stream(startTime, endTime): Readable {
-  //   new Readable()
-  // }
-
-  // async latestEntries(amount?: number): Promise<CloudWatchLogEvent[]> {
-  //   const params: AWS.CloudWatchLogs.Types.FilterLogEventsRequest = {
-  //     endTime: new Date().getTime(),
-  //     limit: amount || 1000,
-  //     logGroupName: this.logGroupName,
-  //   }
-  //   const list = await this.client.filterLogEvents(params).promise()
-  //   return list.events.map(e => new CloudWatchLogEvent('', e.message))
-  // }
 
   private async fetchPage(): Promise<CWLResp> {
     const logGroupName = this.logGroupName
