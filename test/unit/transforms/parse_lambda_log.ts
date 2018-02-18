@@ -25,7 +25,7 @@ class UnitTestParseLambdaLog extends UnitTest {
       .promise()
     data.should.be.an('array')
     data.should.have.length(3)
-    data[0].should.have.keys('endTime', 'messages', 'startTime')
+    data[0].should.have.keys('endTime', 'messages', 'performance', 'startTime')
     data[0].messages.should.be.an('array')
     data[0].messages.should.have.length(1)
   }
