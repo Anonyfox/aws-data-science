@@ -1,15 +1,22 @@
 import { PassThrough } from 'stream'
 
-export type handlerFn<T> = (data: T) => number
+export type handlerFn<T> = (data: T) => boolean
 
+/**
+ * expects a handler function with a truth test. count if result is true
+ */
 export class Count<T> extends PassThrough {
-  accumulator: number = 0
-  handler: handlerFn<T>
+  protected accumulator: number = 0
+  protected handler: handlerFn<T>
 
   constructor(handler: handlerFn<T>) {
     super({ objectMode: true })
     this.handler = handler
-    this.on('data', (data: T) => (this.accumulator += handler(data)))
+    this.on('data', (data: T) => {
+      if (this.handler(data)) {
+        this.accumulator++
+      }
+    })
   }
 
   result() {

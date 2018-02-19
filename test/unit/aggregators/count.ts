@@ -6,16 +6,16 @@ import { skip, slow, suite, test, timeout } from 'mocha-typescript'
 class UnitTest {
   @test
   async 'can count events in stream'() {
-    const countNumbers = new Aggregate.Count<number>(data => data)
-    const countElements = new Aggregate.Count<number>(data => 1)
-    const result = await new Origin.Array([1, 2, 3])
-      .pipe(countNumbers)
-      .pipe(countElements)
+    const countAll = new Aggregate.Count<number>(data => !!data)
+    const countEven = new Aggregate.Count<number>(data => data % 2 === 0)
+    const result = await new Origin.Array([1, 2, 3, 4, 5, 6])
+      .pipe(countAll)
+      .pipe(countEven)
       .pipe(new Collect.Array<number>())
       .promise()
     result.should.be.an('array')
-    result.should.have.length(3)
-    countElements.accumulator.should.be.equal(3)
-    countNumbers.accumulator.should.be.equal(6)
+    result.should.have.length(6)
+    countAll.result().should.be.equal(6)
+    countEven.result().should.be.equal(3)
   }
 }
