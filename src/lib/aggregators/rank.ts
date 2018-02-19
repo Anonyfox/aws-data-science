@@ -1,3 +1,4 @@
+import { fromPairs, sortBy, toPairs } from 'lodash'
 import { PassThrough } from 'stream'
 
 export type handlerFn<T> = (data: T) => string | number
@@ -21,7 +22,18 @@ export class Rank<T> extends PassThrough {
     })
   }
 
-  result() {
-    return this.accumulator
+  resultObject(ascending: boolean = false): object {
+    return fromPairs(this.result(ascending))
+  }
+
+  resultArray(ascending: boolean = false): object[] {
+    const list = this.result(ascending)
+    return list.map(([k, v]) => ({ [k]: v })).reverse()
+  }
+
+  private result(ascending: boolean = false): Array<[string, number]> {
+    const pairs = toPairs(this.accumulator) as Array<[string, number]>
+    const sorted = sortBy(pairs, p => p[1])
+    return ascending ? sorted.reverse() : sorted
   }
 }

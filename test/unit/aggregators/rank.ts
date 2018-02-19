@@ -13,7 +13,8 @@ class UnitTest {
       .promise()
     result.should.be.an('array')
     result.should.have.length(3)
-    rank.result().should.deep.equal({ a: 2, b: 1 })
+    rank.resultObject().should.deep.equal({ a: 2, b: 1 })
+    rank.resultArray().should.deep.equal([{ a: 2 }, { b: 1 }])
   }
 
   @test
@@ -25,6 +26,7 @@ class UnitTest {
       .promise()
     result.should.be.an('array')
     result.should.have.length(3)
-    rank.result().should.deep.equal({ 1: 2, 2: 1 })
+    rank.resultObject().should.deep.equal({ 1: 2, 2: 1 })
+    rank.resultArray().should.deep.equal([{ 1: 2 }, { 2: 1 }])
   }
 }
