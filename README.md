@@ -1,5 +1,11 @@
 # AWS Data Science
 
+[![npm version](https://badge.fury.io/js/aws-data-science.svg)](https://badge.fury.io/js/aws-data-science)
+[![Build Status](https://travis-ci.org/Anonyfox/aws-data-science.svg?branch=master)](https://travis-ci.org/Anonyfox/aws-data-science)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](http://www.gnu.org/licenses/lgpl-3.0)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
+
 Pragmatic take on being a data scientist for AWS-based applications and systems.
 Basically you can take typical AWS data sources, apply transformations, and
 gather results into reports.
