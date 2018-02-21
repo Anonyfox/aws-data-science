@@ -51,6 +51,12 @@ It is also quite easy to parallelize multiple pipelines: don't `await` on
 one, but stuff handlers of many pipelines into an array and await all of
 them as you wish, like with `await Promise.all(myPipelines)`.
 
+## Installation
+
+`npm install -S aws-data-science`
+
+This package also requires a peer dependency of `aws-sdk`.
+
 ## Data Sources ("Origins")
 
 All data sources (called "Origins") implement the `stream.Readable` interface
