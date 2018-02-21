@@ -95,7 +95,7 @@ aggregated informations.
 
 * [x] Array
 * [x] JSON-File
-* [ ] Nothing
+* [x] Nothing
 
 ## Reporting Options
 
