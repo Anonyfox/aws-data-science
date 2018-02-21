@@ -47,6 +47,10 @@ you never have to implement `.on('data')` or `.on('end')` event handlers
 when using Collectors, since they expose a `.promise()` which can be awaited
 on.
 
+It is also quite easy to parallelize multiple pipelines: don't `await` on
+one, but stuff handlers of many pipelines into an array and await all of
+them as you wish, like with `await Promise.all(myPipelines)`.
+
 ## Data Sources ("Origins")
 
 All data sources (called "Origins") implement the `stream.Readable` interface
@@ -58,6 +62,8 @@ data sources can be used currently for data mining:
 * [ ] CloudFront Logs (via S3)
 * [ ] CloudTrail Logs
 * [ ] Billing API
+* [ ] DynamoDB Tables
+* ...
 
 ## Transformations
 
@@ -65,7 +71,10 @@ On every data stream, you can apply as many transformation steps as you wish.
 Since the stream `pipe` data flow model applies backpressure nicely for you,
 your computer should handle practically infinite loads of data without hassle.
 
-* [x]
+* [x] `Transform.Map`: same as `.map()` in javascript
+* [x] `Transform.Filter`: same as `.filter()` in javascript
+* [x] `Transform.ParseLambdaLog`: unifies multi-line event outputs from Lambda
+* ...
 
 ## Aggregations
 
