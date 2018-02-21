@@ -8,9 +8,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to other objects'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => ({ b: obj.a + 1 })
+    const mapper = obj => ({ b: obj.a + 1 })
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(mapper))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
@@ -21,9 +21,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to strings'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => JSON.stringify(obj)
+    const mapper = obj => JSON.stringify(obj)
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(mapper))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
@@ -34,9 +34,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to static number'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => 1
+    const mapper = obj => 1
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(mapper))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
@@ -47,9 +47,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to empty string'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => ''
+    const mapper = obj => ''
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(mapper))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
@@ -60,9 +60,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to zero'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => 0
+    const map = obj => 0
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(map))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
@@ -73,9 +73,9 @@ class UnitTest {
   @test
   async 'can map objects in stream to false'() {
     const data = [{ a: 1 }, { a: 2 }, { a: 3 }]
-    const transformer = obj => false
+    const mapper = obj => false
     const result = await new Origin.Array(data)
-      .pipe(new Transform.TransformObjectData(transformer))
+      .pipe(new Transform.Map(mapper))
       .pipe(new Collect.Array())
       .promise()
     result.should.be.an('array')
