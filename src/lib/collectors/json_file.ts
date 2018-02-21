@@ -32,11 +32,6 @@ export class JsonFile<T> extends Writable {
     callback()
   }
 
-  _final(callback) {
-    this.fileStream.write(`]`)
-    callback()
-  }
-
   promise(): Promise<IFileStats> {
     return new Promise((resolve, reject) => {
       this.on('error', error => reject(error))
