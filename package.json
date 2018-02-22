@@ -1,6 +1,6 @@
 {
     "name": "aws-data-science",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Basic Building Blocks for Data Scientist analyzing AWS cloud platforms",
     "main": "dist/src/index.js",
     "scripts": {
