@@ -4,7 +4,7 @@
     "description": "Basic Building Blocks for Data Scientist analyzing AWS cloud platforms",
     "main": "dist/src/index.js",
     "scripts": {
-        "build": "tsc",
+        "build": "rm -rf dist && tsc",
         "test": "NODE_ENV=test mocha --opts test/mocha.opts",
         "test:watch": "NODE_ENV=test mocha --opts test/mocha.opts --watch"
     },
