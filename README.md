@@ -70,6 +70,7 @@ and must be the starting point of all data analysing efforts. The following
 data sources can be used currently for data mining:
 
 * [x] `Origin.Array`: start stream from simple arrays
+* [x] `Origin.String`: start stream from string, emits words
 * [x] `Origin.CloudWatchLog`: stream CloudWatchLog entries
 * [ ] CloudFront Logs (via S3)
 * [ ] CloudTrail Logs
