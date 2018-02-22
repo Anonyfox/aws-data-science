@@ -1,6 +1,7 @@
 import { Writable } from 'stream'
+import { ICollector } from './interface'
 
-export class Nothing extends Writable {
+export class Nothing extends Writable implements ICollector {
   constructor() {
     super({ objectMode: true })
   }

@@ -1,12 +1,13 @@
 import { createWriteStream, WriteStream } from 'fs'
 import { Writable } from 'stream'
+import { ICollector } from './interface'
 
 export interface IFileStats {
   bytes: number
   lines: number
 }
 
-export class JsonFile<T> extends Writable {
+export class JsonFile<T> extends Writable implements ICollector {
   private fileStream: WriteStream
   private firstLineWritten: boolean = false
   private writtenLines: number = 0

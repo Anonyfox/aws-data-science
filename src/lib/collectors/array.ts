@@ -1,6 +1,7 @@
 import { Writable } from 'stream'
+import { ICollector } from './interface'
 
-export class Array<T> extends Writable {
+export class Array<T> extends Writable implements ICollector {
   private buffer: T[] = []
 
   constructor() {
