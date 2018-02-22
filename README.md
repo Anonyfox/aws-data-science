@@ -95,8 +95,9 @@ This is where data mining comes into play. You can `pipe` you data stream
 into several "Aggregators" to generate additional data, for example counting
 even numbers in a number stream. Or occurences of words within a text corpus.
 
-* [x] Counter
-* [x] Rank
+* [x] `Aggregate.Count`: count truthy statements in stream
+* [x] `Aggregate.List`: store things from the stream in an array
+* [x] `Aggregate.Rank`: count occurences of things and sort by highscore
 * ...
 
 ## Collectors
@@ -106,16 +107,6 @@ data should end up. You might collect anything in an in-memory array, or store
 stuff in files, or even discard everything completely since you only want some
 aggregated informations.
 
-* [x] Array
-* [x] JSON-File
-* [x] Nothing
-
-## Reporting Options
-
-Bonus feature: different people want different reports. Some convenience
-"visualization" tooling might get you started right away.
-
-* [ ] JSON
-* [ ] CSV
-* [ ] Excel (xlsx)
-* [ ] PDF
+* [x] `Collect.Array`: stream sink as simple array
+* [x] `Collect.JsonFile`: stream sink directly into JSON array file
+* [x] `Collect.Nothing`: when you don't need the data any longer
