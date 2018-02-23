@@ -97,6 +97,7 @@ even numbers in a number stream. Or occurences of words within a text corpus.
 
 * [x] `Aggregate.Count`: count truthy statements in stream
 * [x] `Aggregate.List`: store things from the stream in an array
+* [x] `Aggregate.Mean`: count numbers from the stream and return the mean value
 * [x] `Aggregate.Rank`: count occurences of things and sort by highscore
 * ...
 
