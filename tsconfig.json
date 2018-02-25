@@ -11,6 +11,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
+    "declaration": true,
     "outDir": "./dist",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
