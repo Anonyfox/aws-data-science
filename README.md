@@ -20,8 +20,9 @@ bigger architectural systems.
 Just a glimpse for you how it feels like to use this library (via typescript):
 
 ```typescript
-import { Aggregate, Collect, Origin, Transform } from 'aws-data-science'
-;async () => {
+import { Aggregate, Collect, Origin, Transform } from 'aws-data-science';
+
+async () => {
   // interesting for us: count some occurences of numbers by critera
   const counter = new Aggregate.Count(num => num > 3)
 
