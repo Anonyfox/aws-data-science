@@ -82,4 +82,30 @@ class UnitTest {
     result.should.have.length(3)
     result[0].should.be.equal(false)
   }
+
+  @test
+  async 'can map simple numbers'() {
+    const data = [1, 2, 3]
+    const mapper = num => num + 1
+    const result = await new Origin.Array(data)
+      .pipe(new Transform.Map(mapper))
+      .pipe(new Collect.Array())
+      .promise()
+    result.should.be.an('array')
+    result.should.have.length(3)
+    result.should.be.deep.equal([2, 3, 4])
+  }
+
+  @test
+  async 'can map with await simple numbers'() {
+    const data = [1, 2, 3]
+    const mapper = async num => new Promise(resolve => resolve(num + 1))
+    const result = await new Origin.Array(data)
+      .pipe(new Transform.Map(mapper))
+      .pipe(new Collect.Array())
+      .promise()
+    result.should.be.an('array')
+    result.should.have.length(3)
+    result.should.be.deep.equal([2, 3, 4])
+  }
 }

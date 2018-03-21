@@ -10,9 +10,9 @@ export class TransformObjectData<T, S> extends Transform {
     this.handler = handler || defaultHandler
   }
 
-  _transform(data: T, encoding, callback: (Error?, S?) => void): void {
+  async _transform(data: T, encoding, callback: (Error?, S?) => void) {
     try {
-      const result = this.handler(data)
+      const result = await this.handler(data)
       typeof result !== 'undefined' ? callback(null, result) : callback()
     } catch (error) {
       callback(error, null)
